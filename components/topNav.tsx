@@ -13,7 +13,7 @@ type Props = {
 const TopNav = () => {
   const state = useStoreState();
   return (
-    <nav className="absolute w-screen flex items-center justify-between px-4 font-bold border-b-2 border-gray-500">
+    <nav className="absolute w-screen flex items-center justify-between px-4 font-bold bg-black">
       <div className="flex items-center">
         <Link href="/">
           <img
@@ -25,21 +25,18 @@ const TopNav = () => {
       </div>
       <div className='hidden w-full lg:inline-flex lg:flex-grow lg:w-auto'>
         <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex lg:h-auto'>
-          <Link href='/' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:bg-brandbg3 hover:text-white'>
-            Marketplace
+          <Link href='/browse' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:text-white'>
+            Browse
           </Link >
-          <Link href='/' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:bg-brandbg3 hover:text-white'>
+          <Link href='/collection' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:text-white'>
             My Rentals
           </Link>
-          <Link href='/' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:bg-brandbg3 hover:text-white'>
-            My Collection
-          </Link>
-          <Link href='/' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center hover:bg-brandbg3 hover:text-white'>
+          <Link href='/' className='lg:inline-flex lg:w-auto w-full px-3 rounded text-white font-bold items-center justify-center  hover:text-white'>
             Docs
           </Link>
         </div >
         <button
-          className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-xl my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          className="btn-primary"
           style={{ marginLeft: "auto", marginRight: 0 }}
         >
           <ConnectToStarknet connectButton="Connect wallet" />

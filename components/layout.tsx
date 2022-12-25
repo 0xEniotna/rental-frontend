@@ -9,13 +9,11 @@ export default function Layout({ children }: Props) {
 
   return (
     <>
-      <div className='h-screen'>
-        <Navbar />
 
-        <main className="">{children}</main>
+      <Navbar />
+      {/* <main className="h-screen">{children}</main> */}
+      <main>{children}</main>
 
-
-      </div>
       <Footer />
     </>
   )
