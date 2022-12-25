@@ -1,0 +1,183 @@
+[
+    {
+        "data": [
+            {
+                "name": "previousOwner",
+                "type": "felt"
+            },
+            {
+                "name": "newOwner",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "OwnershipTransferred",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "implementation",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "Upgraded",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "previousAdmin",
+                "type": "felt"
+            },
+            {
+                "name": "newAdmin",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "AdminChanged",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "contract_address",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "rental_contract_deployed",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "name": "proxy_admin",
+                "type": "felt"
+            },
+            {
+                "name": "_owner",
+                "type": "felt"
+            },
+            {
+                "name": "_rental_class_hash",
+                "type": "felt"
+            }
+        ],
+        "name": "initializer",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "interfaceId",
+                "type": "felt"
+            }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getClassHash",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getProxyHash",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_rental_class_hash",
+                "type": "felt"
+            }
+        ],
+        "name": "setClassHash",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            },
+            {
+                "name": "public_key",
+                "type": "felt"
+            },
+            {
+                "name": "token_address",
+                "type": "felt"
+            }
+        ],
+        "name": "deployRentalContract",
+        "outputs": [
+            {
+                "name": "contract_address",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "new_implementation",
+                "type": "felt"
+            }
+        ],
+        "name": "upgradeImplementation",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "address",
+                "type": "felt"
+            }
+        ],
+        "name": "setProxyAdmin",
+        "outputs": [],
+        "type": "function"
+    }
+]

@@ -1,0 +1,506 @@
+[
+    {
+        "members": [
+            {
+                "name": "low",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "high",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Uint256",
+        "size": 2,
+        "type": "struct"
+    },
+    {
+        "members": [
+            {
+                "name": "to",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "selector",
+                "offset": 1,
+                "type": "felt"
+            },
+            {
+                "name": "data_offset",
+                "offset": 2,
+                "type": "felt"
+            },
+            {
+                "name": "data_len",
+                "offset": 3,
+                "type": "felt"
+            }
+        ],
+        "name": "AccountCallArray",
+        "size": 4,
+        "type": "struct"
+    },
+    {
+        "data": [
+            {
+                "name": "role",
+                "type": "felt"
+            },
+            {
+                "name": "account",
+                "type": "felt"
+            },
+            {
+                "name": "sender",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "RoleGranted",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "role",
+                "type": "felt"
+            },
+            {
+                "name": "account",
+                "type": "felt"
+            },
+            {
+                "name": "sender",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "RoleRevoked",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "role",
+                "type": "felt"
+            },
+            {
+                "name": "previousAdminRole",
+                "type": "felt"
+            },
+            {
+                "name": "newAdminRole",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "RoleAdminChanged",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "implementation",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "Upgraded",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "previousAdmin",
+                "type": "felt"
+            },
+            {
+                "name": "newAdmin",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "AdminChanged",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "nft_address",
+                "type": "felt"
+            },
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            }
+        ],
+        "keys": [],
+        "name": "TokenDeposit",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "nft_address",
+                "type": "felt"
+            },
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            }
+        ],
+        "keys": [],
+        "name": "TokenWithdrawal",
+        "type": "event"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            },
+            {
+                "name": "public_key",
+                "type": "felt"
+            },
+            {
+                "name": "token_address",
+                "type": "felt"
+            }
+        ],
+        "name": "constructor",
+        "outputs": [],
+        "type": "constructor"
+    },
+    {
+        "inputs": [
+            {
+                "name": "interfaceId",
+                "type": "felt"
+            }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getAdmin",
+        "outputs": [
+            {
+                "name": "admin_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getPublicKey",
+        "outputs": [
+            {
+                "name": "public_key",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getRenterPubKey",
+        "outputs": [
+            {
+                "name": "public_key",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "isListed",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getPriceToPay",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "isRented",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getWhitelistedToken",
+        "outputs": [
+            {
+                "name": "token_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getNftAddress",
+        "outputs": [
+            {
+                "name": "token_address",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "hash",
+                "type": "felt"
+            },
+            {
+                "name": "signature_len",
+                "type": "felt"
+            },
+            {
+                "name": "signature",
+                "type": "felt*"
+            }
+        ],
+        "name": "isValidSignature",
+        "outputs": [
+            {
+                "name": "isValid",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "newPublicKey",
+                "type": "felt"
+            }
+        ],
+        "name": "setPublicKey",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "token_address",
+                "type": "felt"
+            }
+        ],
+        "name": "setWhitelistedToken",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "call_array_len",
+                "type": "felt"
+            },
+            {
+                "name": "call_array",
+                "type": "AccountCallArray*"
+            },
+            {
+                "name": "calldata_len",
+                "type": "felt"
+            },
+            {
+                "name": "calldata",
+                "type": "felt*"
+            }
+        ],
+        "name": "__validate__",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "class_hash",
+                "type": "felt"
+            }
+        ],
+        "name": "__validate_declare__",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "call_array_len",
+                "type": "felt"
+            },
+            {
+                "name": "call_array",
+                "type": "AccountCallArray*"
+            },
+            {
+                "name": "calldata_len",
+                "type": "felt"
+            },
+            {
+                "name": "calldata",
+                "type": "felt*"
+            }
+        ],
+        "name": "__execute__",
+        "outputs": [
+            {
+                "name": "response_len",
+                "type": "felt"
+            },
+            {
+                "name": "response",
+                "type": "felt*"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            },
+            {
+                "name": "_nft_address",
+                "type": "felt"
+            }
+        ],
+        "name": "depositNft",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            },
+            {
+                "name": "nft_address",
+                "type": "felt"
+            }
+        ],
+        "name": "withdrawNft",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "new_price",
+                "type": "Uint256"
+            }
+        ],
+        "name": "createTokenSetListing",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "unlistTokenSet",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "public_key",
+                "type": "felt"
+            }
+        ],
+        "name": "rentTokenSet",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "cancelRental",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "withdrawFunds",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "operator",
+                "type": "felt"
+            },
+            {
+                "name": "from_",
+                "type": "felt"
+            },
+            {
+                "name": "tokenId",
+                "type": "Uint256"
+            },
+            {
+                "name": "data_len",
+                "type": "felt"
+            },
+            {
+                "name": "data",
+                "type": "felt*"
+            }
+        ],
+        "name": "onERC721Received",
+        "outputs": [
+            {
+                "name": "selector",
+                "type": "felt"
+            }
+        ],
+        "type": "function"
+    }
+]
