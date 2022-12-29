@@ -278,11 +278,15 @@
     },
     {
         "inputs": [],
-        "name": "getNftAddress",
+        "name": "getDepositedNft",
         "outputs": [
             {
                 "name": "token_address",
                 "type": "felt"
+            },
+            {
+                "name": "nft_id",
+                "type": "Uint256"
             }
         ],
         "stateMutability": "view",

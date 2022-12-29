@@ -73,6 +73,27 @@
     {
         "inputs": [
             {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "rentalsOwned",
+        "outputs": [
+            {
+                "name": "rentals_len",
+                "type": "felt"
+            },
+            {
+                "name": "rentals",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
                 "name": "interfaceId",
                 "type": "felt"
             }
