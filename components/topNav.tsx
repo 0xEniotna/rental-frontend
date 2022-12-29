@@ -13,7 +13,7 @@ type Props = {
 const TopNav = () => {
   const state = useStoreState();
   return (
-    <nav className="absolute w-screen flex items-center justify-between px-4 font-bold bg-black">
+    <nav className="absolute w-screen flex items-center justify-between px-4 font-bold bg-black z-40 py-5">
       <div className="flex items-center">
         <Link href="/">
           <img
@@ -35,21 +35,16 @@ const TopNav = () => {
             Docs
           </Link>
         </div >
-        <button
-          className="btn-primary"
-          style={{ marginLeft: "auto", marginRight: 0 }}
+        <div
+          className="z-40 ml-auto mr-0"
         >
           <ConnectToStarknet connectButton="Connect wallet" />
           {state.message && (
             <div className="">
-              😵👆
-              <br />
-              Wrong network!
-              <br />
               {capitalizeFirstLetter(state.message)}
             </div>
           )}
-        </button>
+        </div>
       </div >
     </nav >
 

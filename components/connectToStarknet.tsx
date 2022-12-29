@@ -81,12 +81,10 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
 
   if (state.account) {
     return (
-      <div>
-        {state.account.slice(0, 8)}...{" "}
-        <span className="clickable" onClick={disconnectButton}>
-          (disconnect)
-        </span>
-      </div>
+
+      <span className="btn-primary" onClick={disconnectButton}>
+        {`${state.account.slice(0, 8)}...  (disconnect)`}
+      </span>
     );
   } else if (!starknetConnectedAccount) {
     return (
@@ -96,13 +94,13 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
             connect(connector);
           }
         }}
-        className="clickable"
+        className="btn-primary"
       >
         {connectButton}
       </span>
     );
   }
-  return <div></div>;
+  return <></>;
 };
 
 export default ConnectToStarknet;

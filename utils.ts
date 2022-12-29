@@ -2,6 +2,10 @@ import { useStarknet, useAccount } from "@starknet-react/core";
 import { useEffect, useRef } from "react";
 import { uint256 } from "starknet";
 import { toBN, toHex } from "starknet/dist/utils/number";
+import {
+  decodeShortString,
+  encodeShortString,
+} from "starknet/dist/utils/shortString";
 
 export const getAddressFromBN = (bn: any) => {
   const hexString = bn.toString(16);
@@ -18,8 +22,8 @@ export const getUintFromNumber = (num: any) => {
 };
 
 export const useStarknetNetwork = () => {
-  const { account } = useAccount();
   const { library } = useStarknet();
+  const { account, address, status } = useAccount();
   if (!account) {
     return;
   }
@@ -30,7 +34,7 @@ export const useStarknetNetwork = () => {
     } else if (baseUrl.includes("alpha4.starknet.io")) {
       return "goerli";
     } else if (baseUrl.includes("alpha4-2.starknet.io")) {
-      return "goerli2";
+      return "SN_GOERLI2";
     } else if (baseUrl.match(/^https?:\/\/localhost.*/)) {
       return "localhost";
     }
@@ -46,7 +50,33 @@ export const rgbToHex = (r: number, g: number, b: number): string => {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 };
 
+export const feltArrayToStr = (feltArray: number[]) => {
+  return feltArray.map((n: number) => {
+    if (n === 0) {
+      return "";
+    }
+    return decodeShortString(toHex(toBN(n)));
+  });
+};
 
+export const strToFeltArray = (str: string): string[] => {
+  const feltStrings = str.match(/.{1,31}/g);
+  if (!feltStrings) return [];
+  const felts = feltStrings.map((s) => toBN(encodeShortString(s)).toString());
+  return felts;
+};
+
+export const getExecuteParameterFromTheme = (theme: string): string[] => {
+  const feltArray = [];
+  try {
+    for (const letter of theme) {
+      feltArray.push(toBN(encodeShortString(letter)).toString());
+    }
+  } catch (e) {
+    // console.error(e);
+  }
+  return [feltArray.length.toString(), ...feltArray];
+};
 
 export const shortAddress = (address: string) => {
   const addressWith0x = address.slice(0, 2) === "0x" ? address : `0x${address}`;

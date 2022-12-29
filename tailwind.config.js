@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+
+      },
       colors: {
         brandbg1: "#5A11F2",
         brandbg2: "#241ADB",
