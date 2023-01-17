@@ -1,12 +1,10 @@
 import Collection from '../components/collection'
 import { useAccount } from '@starknet-react/core'
 
-export default function MyCollection() {
-  const { account, address, status } = useAccount()
-
+export default function CollectionPage() {
   return (
 
-    <div className="pt-24 pb-24" >
+    <div className="pt-24 pb-24 min-h-screen" >
       <Collection />
     </div>
 
