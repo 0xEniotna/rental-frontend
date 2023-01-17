@@ -10,7 +10,7 @@ export default function Layout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main className=''>{children}</main>
       <Footer />
     </>
   )
