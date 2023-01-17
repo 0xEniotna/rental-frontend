@@ -9,13 +9,25 @@ import { Provider as StrkProvider } from "starknet";
 
 import { store, useStoreDispatch } from "../store";
 import { useStarknetNetwork } from "../utils";
-import TopNav from "../components/topNav";
 import Layout from "../components/layout";
 
 const StarknetStatusComponent = () => {
   const dispatch = useStoreDispatch();
   const network = useStarknetNetwork();
+  // if (typeof window !== "undefined") {
+
+
   useEffect(() => {
+    const previousAccount = localStorage.getItem("account");
+
+    if (previousAccount) {
+      dispatch.setAccount({
+        account: previousAccount,
+        accountConnected: false,
+      });
+    }
+    dispatch.setRehydrated(
+    );
     dispatch.setNetwork(network || "");
   }, [dispatch, network]);
   return <></>;
@@ -29,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     ],
     []
   );
+
   return (
     <ReactReduxProvider store={store}>
       <StarknetConfig
@@ -45,11 +58,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
       >
         <Head>
-          <title>StarkLoc</title>
-          <meta property="og:title" content="StarkLoc" />
-
-
-
+          <title>StarkRent</title>
+          <meta property="og:title" content="StarkRent" />
         </Head>
         <StarknetStatusComponent />
         <Layout>
