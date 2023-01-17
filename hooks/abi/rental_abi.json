@@ -157,7 +157,49 @@
         "type": "event"
     },
     {
+        "data": [
+            {
+                "name": "nft_address",
+                "type": "felt"
+            },
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            },
+            {
+                "name": "price",
+                "type": "Uint256"
+            }
+        ],
+        "keys": [],
+        "name": "TokenListed",
+        "type": "event"
+    },
+    {
+        "data": [
+            {
+                "name": "nft_address",
+                "type": "felt"
+            },
+            {
+                "name": "nft_id",
+                "type": "Uint256"
+            },
+            {
+                "name": "renter",
+                "type": "felt"
+            }
+        ],
+        "keys": [],
+        "name": "TokenRented",
+        "type": "event"
+    },
+    {
         "inputs": [
+            {
+                "name": "proxy_admin",
+                "type": "felt"
+            },
             {
                 "name": "owner",
                 "type": "felt"
@@ -171,9 +213,9 @@
                 "type": "felt"
             }
         ],
-        "name": "constructor",
+        "name": "initializer",
         "outputs": [],
-        "type": "constructor"
+        "type": "function"
     },
     {
         "inputs": [
@@ -222,6 +264,18 @@
         "outputs": [
             {
                 "name": "public_key",
+                "type": "felt"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getRentalTimestamp",
+        "outputs": [
+            {
+                "name": "timestamp",
                 "type": "felt"
             }
         ],
@@ -440,15 +494,19 @@
             {
                 "name": "new_price",
                 "type": "Uint256"
+            },
+            {
+                "name": "duration",
+                "type": "felt"
             }
         ],
-        "name": "createTokenSetListing",
+        "name": "listRental",
         "outputs": [],
         "type": "function"
     },
     {
         "inputs": [],
-        "name": "unlistTokenSet",
+        "name": "unlistRental",
         "outputs": [],
         "type": "function"
     },
@@ -459,7 +517,7 @@
                 "type": "felt"
             }
         ],
-        "name": "rentTokenSet",
+        "name": "rent",
         "outputs": [],
         "type": "function"
     },
@@ -505,6 +563,28 @@
                 "type": "felt"
             }
         ],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "new_implementation",
+                "type": "felt"
+            }
+        ],
+        "name": "upgradeImplementation",
+        "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "address",
+                "type": "felt"
+            }
+        ],
+        "name": "setProxyAdmin",
+        "outputs": [],
         "type": "function"
     }
 ]
