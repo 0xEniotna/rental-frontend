@@ -1,5 +1,22 @@
 [
     {
+        "members": [
+            {
+                "name": "low",
+                "offset": 0,
+                "type": "felt"
+            },
+            {
+                "name": "high",
+                "offset": 1,
+                "type": "felt"
+            }
+        ],
+        "name": "Uint256",
+        "size": 2,
+        "type": "struct"
+    },
+    {
         "data": [
             {
                 "name": "previousOwner",
@@ -45,6 +62,10 @@
             {
                 "name": "contract_address",
                 "type": "felt"
+            },
+            {
+                "name": "owner",
+                "type": "felt"
             }
         ],
         "keys": [],
@@ -64,10 +85,52 @@
             {
                 "name": "_rental_class_hash",
                 "type": "felt"
+            },
+            {
+                "name": "_proxy_class_hash",
+                "type": "felt"
             }
         ],
         "name": "initializer",
         "outputs": [],
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "rentalsOwned",
+        "outputs": [
+            {
+                "name": "rentals_len",
+                "type": "felt"
+            },
+            {
+                "name": "rentals",
+                "type": "felt*"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "felt"
+            }
+        ],
+        "name": "getUserBalance",
+        "outputs": [
+            {
+                "name": "value",
+                "type": "Uint256"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {

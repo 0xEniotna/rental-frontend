@@ -18,6 +18,7 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
   }, [refresh]);
 
   const { address: starknetConnectedAccount } = useAccount();
+
   const connector = available.length > 0 ? available[0] : null;
 
   const disconnectAndDispatch = useCallback(() => {
@@ -25,7 +26,6 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
       try {
         disconnect();
       } catch (e) {
-        // console.error(e);
         console.log("[DEBUG] Could not disconnect", e);
       }
     }
@@ -33,6 +33,7 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
       account: "",
       accountConnected: false,
     });
+    dispatch.setNetwork("");
   }, [starknetConnectedAccount, disconnect, dispatch]);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
       disconnectAndDispatch();
     }
   }, [disconnectAndDispatch, state.network]);
+
 
   useEffect(() => {
     if (!state.rehydrated) return;
@@ -61,6 +63,7 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
       state.account &&
       state.accountConnected
     ) {
+      console.log("here ")
       dispatch.setAccount({
         account: "",
         accountConnected: false,
@@ -75,34 +78,26 @@ const ConnectToStarknet = ({ connectButton }: Props) => {
     state.rehydrated,
   ]);
 
-  const disconnectButton = () => {
-    disconnectAndDispatch();
-  };
-
-  if (state.account) {
-    return (
-      <div>
-        {state.account.slice(0, 8)}...{" "}
-        <span className="clickable" onClick={disconnectButton}>
-          (disconnect)
+  return (
+    <div>
+      {state.account ?
+        <span className="btn-primary" onClick={disconnectAndDispatch}>
+          {`${state.account.slice(0, 8)}...  (disconnect)`}
         </span>
-      </div>
-    );
-  } else if (!starknetConnectedAccount) {
-    return (
-      <span
-        onClick={() => {
-          if (connector) {
-            connect(connector);
-          }
-        }}
-        className="clickable"
-      >
-        {connectButton}
-      </span>
-    );
-  }
-  return <div></div>;
+        :
+        <span
+          onClick={() => {
+            if (connector) {
+              connect(connector);
+            }
+          }}
+          className="btn-primary"
+        >
+          {connectButton}
+        </span>
+      }
+    </div>
+  );
 };
 
 export default ConnectToStarknet;
