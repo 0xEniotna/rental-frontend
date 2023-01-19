@@ -36,19 +36,19 @@ export default function Collection() {
   });
   const [rentalsOwned, setRentalsOwned] = useState<any>([]);
 
-  const options = { method: 'GET', headers: { accept: 'application/json' } };
   useEffect(() => {
     setRentalsOwned(rentalsOfOwnerData);
     setFactoryAddress(factoryContract?.address);
     setUserPubKey(publicKey?.toString());
-
-    fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${state.account}`, options)
-      .then(response => response.json())
-      .then(response => {
-        setNftOwned(response.assets);
-      })
-      .catch(err => console.error(err))
-  }, [nftOwned, rentalsOfOwnerData, factoryContract, publicKey])
+    if (state.account != "") {
+      fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${state.account}`, { method: 'GET', headers: { accept: 'application/json' } })
+        .then(response => response.json())
+        .then(response => {
+          setNftOwned(response.assets);
+        })
+        .catch(err => console.error(err))
+    }
+  }, [nftOwned, rentalsOfOwnerData, factoryContract, publicKey, state.account])
 
   const loading = rentalsOfOwnerLoading;
   const rentalsOfUser =
@@ -66,18 +66,14 @@ export default function Collection() {
   }, [state.account, userPubKey, factoryAddress])
 
   const { execute: deploy, loading: deployLoading } = useStarknetExecute({ calls });
-
   const { execute: deployAndDeposit, loading: deployDepositLoading } = useStarknetExecute({ calls });
   return (
-
     <div className="">
       <div className='container z-40 mx-auto'>
         <div className='flex flex-col items-left'>
           <h1 className='text-4xl text-bold ml-28'>
             My Rentals
           </h1>
-
-
           {rentalsOfOwnerData ? <div>
             <div className='flex flex-row ml-28 mr-28 mt-4 text-xl text-bold justify-around'>
               <p className=''>Account address</p>
@@ -87,7 +83,7 @@ export default function Collection() {
             <div className='flex flex-row items-center '>
               <div className='mt-4 ml-28 mr-8 overflow-auto h-96	grow'>
                 {rentalsOfUser?.map((obj: any) => (
-                  <Rental item={obj} nfts={nftOwned} />
+                  <Rental key={obj} item={obj} nfts={nftOwned} />
                 ))}
               </div>
               <CgScrollV className='' />
@@ -101,7 +97,7 @@ export default function Collection() {
                   </svg>
                   Deploying...
                 </button>}
-                {!deployLoading && <button className='btn-primary' onClick={deploy}>
+                {!deployLoading && <button className='btn-primary' onClick={() => deploy()}>
                   Deploy
                 </button>}
               </div>
@@ -113,19 +109,14 @@ export default function Collection() {
                   </svg>
                   Deploying...
                 </button>}
-                {!deployDepositLoading && <button className='btn-primary' disabled onClick={deployAndDeposit}>
+                {!deployDepositLoading && <button className='btn-primary' disabled onClick={() => deployAndDeposit()}>
                   Deploy & deposit
                 </button>}
               </div>
-
             </div>
           </div>
-
             : <p className='mt-10 text-xl text-bold ml-28'>You have 0 rentals deployed 😢</p>}
-
-
         </div>
-
       </div>
       <div className='container z-40 mx-auto mt-16'>
         <div className='flex flex-col items-left'>
@@ -134,9 +125,9 @@ export default function Collection() {
             My NFTs
           </h1>
           {loading ? <p className='text-xl text-bold ml-28'>NFTs are loading </p> : null}
-          {nftOwned ? <div className='mt-8 grid grid-cols-3'>
+          {nftOwned.length > 0 ? <div className='mt-8 grid grid-cols-3'>
             {nftOwned.map((obj: any) => (
-              <NFT item={obj} />
+              <NFT key={obj} item={obj} />
             ))}
           </div> : <p className='mt-10 text-xl text-bold ml-28'>You own 0 NFT 😢, you can buy some on <a href="https://testnet.aspect.co/">Aspect</a></p>}
         </div>

@@ -3,9 +3,9 @@ import { Abi } from "starknet";
 
 import Erc721Abi from "./abi/nft_abi.json";
 
-export const useERC721Contract = () => {
+export const useERC721Contract = (address: string) => {
   return useContract({
     abi: Erc721Abi as Abi,
-    address: process.env.NEXT_PUBLIC_ERC721_ADDRESS,
+    address: address,
   });
 };
