@@ -26,9 +26,6 @@ export default function Collection() {
     args: [state.account || ""],
   });
 
-
-
-
   const { data: rentalsOfOwnerData, loading: rentalsOfOwnerLoading } = useStarknetCall({
     contract: factoryContract,
     method: state.account ? "rentalsOwned" : undefined,
@@ -36,10 +33,7 @@ export default function Collection() {
   });
   const [rentalsOwned, setRentalsOwned] = useState<any>([]);
 
-  useEffect(() => {
-    setRentalsOwned(rentalsOfOwnerData);
-    setFactoryAddress(factoryContract?.address);
-    setUserPubKey(publicKey?.toString());
+  useMemo(() => {
     if (state.account != "") {
       fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${state.account}`, { method: 'GET', headers: { accept: 'application/json' } })
         .then(response => response.json())
@@ -48,9 +42,15 @@ export default function Collection() {
         })
         .catch(err => console.error(err))
     }
+  }, [setNftOwned, state.account])
+
+  useEffect(() => {
+    setRentalsOwned(rentalsOfOwnerData);
+    setFactoryAddress(factoryContract?.address);
+    setUserPubKey(publicKey?.toString());
   }, [nftOwned, rentalsOfOwnerData, factoryContract, publicKey, state.account])
 
-  const loading = rentalsOfOwnerLoading;
+  // const loading = rentalsOfOwnerLoading;
   const rentalsOfUser =
     rentalsOfOwnerLoading || !rentalsOwned?.[0]
       ? []
@@ -67,6 +67,7 @@ export default function Collection() {
 
   const { execute: deploy, loading: deployLoading } = useStarknetExecute({ calls });
   const { execute: deployAndDeposit, loading: deployDepositLoading } = useStarknetExecute({ calls });
+
   return (
     <div className="">
       <div className='container z-40 mx-auto'>
@@ -118,16 +119,15 @@ export default function Collection() {
             : <p className='mt-10 text-xl text-bold ml-28'>You have 0 rentals deployed 😢</p>}
         </div>
       </div>
-      <div className='container z-40 mx-auto mt-16'>
+      <div className='container z-40 mx-auto mt-16 border-t pt-16'>
         <div className='flex flex-col items-left'>
 
           <h1 className='text-4xl text-bold ml-28'>
             My NFTs
           </h1>
-          {loading ? <p className='text-xl text-bold ml-28'>NFTs are loading </p> : null}
           {nftOwned.length > 0 ? <div className='mt-8 grid grid-cols-3'>
             {nftOwned.map((obj: any) => (
-              <NFT key={obj} item={obj} />
+              <NFT key={obj.id} item={obj} />
             ))}
           </div> : <p className='mt-10 text-xl text-bold ml-28'>You own 0 NFT 😢, you can buy some on <a href="https://testnet.aspect.co/">Aspect</a></p>}
         </div>

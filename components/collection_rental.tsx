@@ -5,7 +5,7 @@ import { getAddressFromString } from "../utils";
 import { useRental } from '../hooks/rental';
 import { useEffect, useState, useMemo } from 'react';
 import { useStoreState } from "../store";
-import { useStarknetCall, useAccount, useStarknetExecute } from '@starknet-react/core';
+import { useStarknetCall, useAccount, useStarknetExecute, useSignTypedData } from '@starknet-react/core';
 import { BigNumberish } from "starknet/src/utils/number";
 import IMG from './rental_img';
 import { FaEthereum } from "react-icons/fa"
@@ -80,6 +80,17 @@ export default function Rental({ item, nfts }: Props) {
       }
     ]
   });
+  const message = {
+
+  }
+
+  const { data, signTypedData } = useSignTypedData(message)
+
+  // const targetContract = '0x123456';
+  // const entrypoint = 'dummy_entrypoint';
+  // const calldata = compileCalldata({arg1: 1, arg2: 2});
+  // const signedTx = await acc.signTx(targetContract, entrypoint, calldata);
+  // const sentTx = await acc.broadcastSignedTransaction(signedTx);
 
   return (
     <div className='flex flex-col border-2 rounded-2xl bg-zinc-900 mb-4'>

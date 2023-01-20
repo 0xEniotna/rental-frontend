@@ -48,15 +48,26 @@ export default function Listing({ item }: Props) {
   const options = useMemo(() => {
     return { method: 'GET', headers: { accept: 'application/json' } }
   }, []);
+  useMemo(() => {
+    if (rental?.address) {
+      fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${rental.address}`, options)
+        .then(response => response.json())
+        .then(response => {
+          console.log("nfts > ", response.assets)
+          setNftOwned(response.assets);
+        })
+        .catch(err => console.error(err));
+    }
+  }, [setNftOwned, rental])
 
   useEffect(() => {
-    fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${rental?.address}`, options)
-      .then(response => response.json())
-      .then(response => {
-        console.log("nfts > ", response.assets)
-        setNftOwned(response.assets);
-      })
-      .catch(err => console.error(err));
+    // fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${rental?.address}`, options)
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     console.log("nfts > ", response.assets)
+    //     setNftOwned(response.assets);
+    //   })
+    //   .catch(err => console.error(err));
 
     setListed(isListed?.toString());
     if (price) {
@@ -69,8 +80,11 @@ export default function Listing({ item }: Props) {
         <div className='flex flex-col items-center mt-8 justify-center'>
           <div className='flex flex-col mt-8 justify-center relative w-72 h-72'>
             {nftOwned[0] && nftOwned[0].image_url_copy ? <Image className='absolute rounded-xl opacity-80' src={nftOwned[0].image_url_copy} fill alt={nftOwned[0].name} /> : <div className='w-16 text-center'>😥</div>}
-            {nftOwned[0]?.name ? <a href={nftOwned[0]?.aspect_link} className='ml-5 z-40 bottom-7 left-0 absolute text-2xl text-white font-extrabold hover:underline hover:scale-105 duration-300 ease-in-out'>{nftOwned[0].name}</a> : <a href={nftOwned[0].aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>No name</a>}
-
+            {nftOwned[0] && (
+              nftOwned[0].name ?
+                <a href={nftOwned[0]?.aspect_link} className='ml-5 z-40 bottom-7 left-0 absolute text-2xl text-white font-extrabold hover:underline hover:scale-105 duration-300 ease-in-out'>{nftOwned[0].name}</a>
+                : <a href={nftOwned[0]?.aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>No name</a>
+            )}
             <div className='flex flex-row ml-5 z-40 bottom-0 left-0 absolute text-xl text-white font-extrabold'>
               < FaEthereum />
               {priceToPay != 0 && <p>{` ${priceToPay.low * 10 ** -18}`}</p>}

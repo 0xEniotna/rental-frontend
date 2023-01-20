@@ -27,7 +27,6 @@ export default function Browse() {
 
   useEffect(() => {
     setEndpoint(starknetEndpoint(state.network));
-
     starknetRpcProvider.getEvents({
       from_block: { block_number: 615659 },
       address: factoryContract ? factoryContract.address : "",
@@ -39,7 +38,7 @@ export default function Browse() {
       })
       .catch(err => console.error(err));
   }, [allRentals, endpoint, starknetRpcProvider, factoryContract, state.network]);
-  console.log(allRentals)
+
   return (
     <div className="">
       <div className='container z-40 mx-auto'>
