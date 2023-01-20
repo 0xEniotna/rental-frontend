@@ -10,7 +10,8 @@ export default function IMG({ item }: Props) {
     <div className='px-1 '>
       {item.image_url_copy ? <a href={item.aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>
         <div className='relative h-16 w-16'>
-          <Image className='rounded-xl' fill src={item.image_url_copy} alt={item.name} />
+          {item.name ? <Image className='rounded-xl' fill src={item.image_url_copy} alt={item.name} />
+            : <Image className='rounded-xl' fill src={item.image_url_copy} alt={"No Name 😢"} />}
         </div>
       </a>
         : <div className='w-16 text-center'>😥</div>}

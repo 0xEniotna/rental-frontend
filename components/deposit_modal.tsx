@@ -21,7 +21,7 @@ export default function DepositModal({ contract, nfts }: Props) {
   const [showModal, setShowModal] = useState(false);
   const [selected, setSelected] = useState<any>();
   const [nft_address, setNftAddress] = useState("");
-  const [nft_id, setNftId] = useState(JSON.stringify({ low: 0, high: 0 }));
+  const [nft_id, setNftId] = useState(0);
 
 
   useEffect(() => {

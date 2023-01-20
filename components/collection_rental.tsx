@@ -5,7 +5,7 @@ import { getAddressFromString } from "../utils";
 import { useRental } from '../hooks/rental';
 import { useEffect, useState, useMemo } from 'react';
 import { useStoreState } from "../store";
-import { useStarknetCall, useAccount, useStarknetExecute } from '@starknet-react/core';
+import { useStarknetCall, useAccount, useStarknetExecute, useSignTypedData } from '@starknet-react/core';
 import { BigNumberish } from "starknet/src/utils/number";
 import IMG from './rental_img';
 import { FaEthereum } from "react-icons/fa"
