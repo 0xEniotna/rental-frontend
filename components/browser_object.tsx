@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRental } from '../hooks/rental';
 import { getAddressFromString } from "../utils";
 import { useStarknetCall } from '@starknet-react/core';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useStoreState } from "../store";
 import { BigNumberish } from "starknet/src/utils/number";
 import { FaEthereum } from "react-icons/fa";
@@ -45,7 +45,10 @@ export default function Listing({ item }: Props) {
     args: [],
   });
 
-  const options = { method: 'GET', headers: { accept: 'application/json' } };
+  const options = useMemo(() => {
+    return { method: 'GET', headers: { accept: 'application/json' } }
+  }, []);
+
   useEffect(() => {
     fetch(`https://api-testnet.aspect.co/api/v0/assets?owner_address=${rental?.address}`, options)
       .then(response => response.json())
@@ -58,37 +61,21 @@ export default function Listing({ item }: Props) {
     setListed(isListed?.toString());
     if (price) {
       setPrice(price[0]);
-      console.log(priceToPay.low.toString())
     }
-  }, [isListed, nftOwned, price]);
+  }, [isListed, nftOwned, price, options, rental]);
   return (
     <>
       {listed == 1 ?
         <div className='flex flex-col items-center mt-8 justify-center'>
           <div className='flex flex-col mt-8 justify-center relative w-72 h-72'>
             {nftOwned[0] && nftOwned[0].image_url_copy ? <Image className='absolute rounded-xl opacity-80' src={nftOwned[0].image_url_copy} fill alt={nftOwned[0].name} /> : <div className='w-16 text-center'>😥</div>}
-            {nftOwned[0].name ? <a href={nftOwned[0].aspect_link} className='ml-5 z-40 bottom-7 left-0 absolute text-2xl text-white font-extrabold hover:underline hover:scale-105 duration-300 ease-in-out'>{nftOwned[0].name}</a> : <a href={nftOwned[0].aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>No name</a>}
+            {nftOwned[0]?.name ? <a href={nftOwned[0]?.aspect_link} className='ml-5 z-40 bottom-7 left-0 absolute text-2xl text-white font-extrabold hover:underline hover:scale-105 duration-300 ease-in-out'>{nftOwned[0].name}</a> : <a href={nftOwned[0].aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>No name</a>}
 
             <div className='flex flex-row ml-5 z-40 bottom-0 left-0 absolute text-xl text-white font-extrabold'>
               < FaEthereum />
               {priceToPay != 0 && <p>{` ${priceToPay.low * 10 ** -18}`}</p>}
             </div>
-            {/* <div className='mt-2 z-40 left-0 top-0 absolute'>
-              {rental && <a href={link}
-                target="_blank"
-                className='hover:underline text-black text-xl'
-              >
-                Rental Account: {`${item} `.slice(0, 10)}...
-              </a>}
-            </div> */}
           </div>
-
-          {/* {owner &&
-            <div className='flex flex-row mt-1'>
-              <p>Owner: </p>
-              <p>{` ${owner}`.slice(0, 10)}...</p>
-            </div>} */}
-
         </div >
         : null
       }

@@ -6,11 +6,12 @@ type Props = {
 };
 
 export default function IMG({ item }: Props) {
-  <a href={item.aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>{item.name}</a>
   return (
-    <div className='px-1'>
+    <div className='px-1 '>
       {item.image_url_copy ? <a href={item.aspect_link} className='mt-2 hover:underline hover:scale-105 duration-300 ease-in-out'>
-        <Image className='rounded-xl' width={75} height={75} src={item.image_url_copy} alt={item.name} />
+        <div className='relative h-16 w-16'>
+          <Image className='rounded-xl' fill src={item.image_url_copy} alt={item.name} />
+        </div>
       </a>
         : <div className='w-16 text-center'>😥</div>}
     </div>

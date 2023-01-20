@@ -26,7 +26,6 @@ export default function ListingModal({ contract }: Props) {
   const [showModal, setShowModal] = React.useState(false);
   const [message, setMessage] = useState(0);
   const [selected, setSelected] = useState(durations[0])
-  console.log("num", number.toBN((message * 10 ** 18).toString()).toString());
   const calls = useMemo(() => {
     const selectedDuration = selected.duration * toSeconds;
     const tx = {
@@ -147,7 +146,7 @@ export default function ListingModal({ contract }: Props) {
                       </button>}
                     {!listingLoading &&
                       <button className='bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-                        onClick={list}>
+                        onClick={() => list()}>
                         List NFT !
                       </button>}
                   </div>
